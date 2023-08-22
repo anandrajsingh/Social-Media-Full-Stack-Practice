@@ -16,6 +16,7 @@ import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js";
 import User from "./models/users.js";
 import Post from "./models/Post.js";
+import { users, posts } from "./data/index.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -53,6 +54,9 @@ mongoose.connect(process.env.MONGO_URL, {
     useUnifiedTopology: true,
 })
 .then(() => {
-    app.listen(PORT, ()=> console.log(`Server Port: ${PORT}`));
+    app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
+
+    // User.insertMany(users)
+    // Post.insertMany(posts)
 })
 .catch((error) => console.log(`${error} did not connect`));
